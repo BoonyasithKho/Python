@@ -298,7 +298,7 @@ def getAPIWeatherTodayFromV2XML():
     ]
     print(df)
     engine = create_engine(f'postgresql://{user}:{pwd}@{host}:{port}/{dbname}')
-    df.to_sql('TMD_WeatherToday', engine, if_exists='replace', index=False)
+    df.to_sql('TMD_WeatherToday', engine, if_exists='append', index=False)
 
 def getAPIWeatherTodayFromJSON():
     uri = requests.get('http://data.tmd.go.th/api/WeatherToday/V1/?type=json')
@@ -308,7 +308,7 @@ def getAPIWeatherTodayFromJSON():
     df['timestamp_Get'] = pd.Timestamp(current_dateTime, tz='Asia/Bangkok')
     print(df)
     engine = create_engine(f'postgresql://{user}:{pwd}@{host}:{port}/{dbname}')
-    df.to_sql('TMD_WeatherToday', engine, if_exists='replace', index=False)
+    df.to_sql('TMD_WeatherToday', engine, if_exists='append', index=False)
 
 if __name__ == "__main__":
     

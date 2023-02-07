@@ -33,7 +33,7 @@ def getAPIWeatherWarningNewsFromXML():
         ]
     print(df)
     engine = create_engine(f'postgresql://{user}:{pwd}@{host}:{port}/{dbname}')
-    df.to_sql('TMD_WeatherWarningNews', engine, if_exists='replace', index=False)
+    df.to_sql('TMD_WeatherWarningNews', engine, if_exists='append', index=False)
 
 def getAPIWeatherWarningNewsFromJson():
     uri = requests.get('http://data.tmd.go.th/api/WeatherWarningNews/v1/?uid=demo&ukey=demokey&format=json')
@@ -55,7 +55,7 @@ def getAPIWeatherWarningNewsFromJson():
     ], axis=1)
     print(df)
     engine = create_engine(f'postgresql://{user}:{pwd}@{host}:{port}/{dbname}')
-    df.to_sql('TMD_WeatherWarningNews', engine, if_exists='replace', index=False)
+    df.to_sql('TMD_WeatherWarningNews', engine, if_exists='append', index=False)
     
 if __name__ == "__main__":
     # Database connection
